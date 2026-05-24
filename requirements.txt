@@ -1,0 +1,10 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+missingno
+joblib
+jupyter
+ipykernel
+autogluon.tabular==1.5.0
