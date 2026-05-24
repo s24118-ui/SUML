@@ -1,0 +1,36 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    container_name: valauto-api
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  node:
+    container_name: valauto-node
+    build:
+      context: .
+      dockerfile: ./docker/front/Dockerfile
+      target: node
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - shared-dist:/app/dist
+
+  nginx:
+    container_name: valauto-nginx
+    build:
+      context: .
+      dockerfile: ./docker/front/Dockerfile
+      target: nginx
+    depends_on:
+      - node
+    ports:
+      - "443:443"
+    volumes:
+      - shared-dist:/usr/share/nginx/html
+
+volumes:
+  shared-dist:

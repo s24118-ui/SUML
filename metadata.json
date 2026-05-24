@@ -1,0 +1,6 @@
+{
+  "name": "Valauto",
+  "description": "Kalkulator wyceny pojazdów SPA komunikujący się z backendem FastAPI na podstawie specyfikacji samochodu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
