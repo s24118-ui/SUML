@@ -158,6 +158,8 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     data.loc[data["Fuel_type"] == "Electric", "Transmission"] = "Automatic"
     data = data.dropna(subset=["Transmission"])
 
+    data = data[data['Currency'] == 'PLN'].copy()
+
     return data
 
 
