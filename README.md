@@ -27,3 +27,8 @@ docker compose up --build
 ```bash
 docker exec -it valauto-api-front npm run build
 ```
+
+## Do czystości kodu 
+```bash
+docker exec -it valauto-api-front npx eslint .
+```
