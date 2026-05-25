@@ -1,4 +1,3 @@
-"""FastAPI entry point for valauto-api."""
 from __future__ import annotations
 
 from fastapi import FastAPI
