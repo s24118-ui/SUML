@@ -16,7 +16,16 @@ export async function fetchValuation(data: ValuationRequest): Promise<ValuationR
     });
 
     if (!response.ok) {
-        throw new Error(`Błąd serwera API (Status: ${response.status})`);
+        let detail = `Błąd serwera API (Status: ${response.status})`;
+        try {
+            const body = await response.json();
+            if (typeof body.detail === 'string') {
+                detail = body.detail;
+            }
+        } catch {
+            // ignore JSON parse errors
+        }
+        throw new Error(detail);
     }
 
     return response.json();
