@@ -12,6 +12,7 @@ interface ValuationFormProps {
 export function ValuationForm({isSubmitting, onSubmit}: ValuationFormProps) {
     const [formData, setFormData] = useState<ValuationRequest>({
         marka: CAR_BRANDS[0],
+        model_pojazdu: 'Other',
         rok_produkcji: new Date().getFullYear() - 5,
         przebieg: 100000,
         moc_silnika: 150,
@@ -45,15 +46,28 @@ export function ValuationForm({isSubmitting, onSubmit}: ValuationFormProps) {
 
             <div className="p-8 flex-1 overflow-y-auto">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5 h-full">
-                    <div className="space-y-1">
-                        <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Marka i
-                            Model</label>
-                        <div className="relative">
-                            <CustomSelect
-                                name="marka"
-                                value={formData.marka}
-                                options={CAR_BRANDS}
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Marka</label>
+                            <div className="relative">
+                                <CustomSelect
+                                    name="marka"
+                                    value={formData.marka}
+                                    options={CAR_BRANDS}
+                                    onChange={handleStringChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Model</label>
+                            <input
+                                type="text"
+                                name="model_pojazdu"
+                                required
+                                value={formData.model_pojazdu}
                                 onChange={handleStringChange}
+                                placeholder="np. Golf, A4, Other"
+                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-900 outline-none text-sm transition-all"
                             />
                         </div>
                     </div>
