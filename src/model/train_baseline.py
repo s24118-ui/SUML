@@ -51,10 +51,13 @@ FREQUENCY_FEATURES = [
 
 
 def make_one_hot_encoder():
+    params = {"handle_unknown": "ignore", "sparse_output": False}
     try:
-        return OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+        return OneHotEncoder(**params)
     except TypeError:
-        return OneHotEncoder(handle_unknown="ignore", sparse=False)
+        params.pop("sparse_output")
+        params["sparse"] = False
+        return OneHotEncoder(**params)
 
 
 def load_data():
