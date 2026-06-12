@@ -4,8 +4,14 @@ services:
       context: .
       dockerfile: ./docker/api/Dockerfile
     container_name: valauto-api
+    environment:
+      MODEL_PATH: /mnt/SUML-main/models/autogluon_price_model
+      SUML_ROOT: /mnt/SUML-main
+      CORS_ORIGINS: "http://localhost:5173,https://localhost"
     ports:
       - "8000:8000"
+    volumes:
+      - ../SUML-main:/mnt/SUML-main:rw
     restart: unless-stopped
 
   node:
